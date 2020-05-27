@@ -225,6 +225,13 @@ function! s:check_back_space() abort
 	return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
+" 使用 <c-space> 觸發補全
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" 使用 <cr> 確認補全，`<C-g>u` 表示在當前位置斷開撤消鏈
+" Coc 僅在確認時做片段和額外編輯
+ inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
 
 "------------------------------------"
 " VIM-PLUGING						 "
